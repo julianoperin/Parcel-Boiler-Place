@@ -1,12 +1,9 @@
-@import "second";
+@import "app";
+@import "nav";
+@import "cursor";
 
-$main-color: purple;
-
-body {
-  background-color: blue;
-}
-
-li {
-  color: red;
-  font-size: 20px;
-}
+/* 
+font-family: 'Forum', cursive;
+font-family: 'Give You Glory', cursive;
+font-family: 'Quicksand', sans-serif;
+*/
