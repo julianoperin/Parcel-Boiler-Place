@@ -1,0 +1,28 @@
+.fashion1,
+.fashion2,
+.fashion3 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  min-height: 90vh;
+  //   justify-content: center;
+  //   align-items: center;
+  width: 70%;
+  margin: auto;
+  color: white;
+  margin-top: 5rem;
+}
+
+.fashion-img {
+  height: 50vh;
+}
+
+.fashion-text {
+  color: black;
+}
+
+.fashion-img img {
+  //   width: 100%;
+  //   height: 100%;
+  //   object-fit: cover;
+  width: 600px;
+}
