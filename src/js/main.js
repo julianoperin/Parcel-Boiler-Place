@@ -1,5 +1,4 @@
 import "../sass/main.scss";
-import navSlide from "./nav";
 
 let controller;
 let slideScene;
@@ -111,9 +110,44 @@ function activeCursor(e) {
 window.addEventListener("mousemove", cursor);
 window.addEventListener("mouseover", activeCursor);
 
+//! ***************** Nav Slide
+const navSlide = () => {
+  const burger = document.querySelector(".burger");
+  const nav = document.querySelector(".nav-links");
+  const links = document.querySelectorAll(".nav-links li");
+  const corp = document.querySelector("body");
+
+  //! Toggle Nav
+  burger.addEventListener("click", () => {
+    nav.classList.toggle("nav-active");
+
+    //! Animate Links
+    links.forEach((link, index) => {
+      if (link.style.animation) {
+        link.style.animation = "";
+      } else {
+        link.style.animation = `navLinkFade 0.5s ease forwards ${
+          index / 2 + 0.3
+        }s`;
+      }
+    });
+
+    //! Burger Animation
+    burger.classList.toggle("toggle");
+
+    //! Body overflow and disappear
+    corp.classList.toggle("over");
+  });
+};
+
 navSlide();
+
 //! Barba Page Transitions
 const logo = document.querySelector("#logo");
+const home = document.querySelector(".home-link");
+const about = document.querySelector(".about-link");
+const work = document.querySelector(".work-link");
+const contact = document.querySelector(".contact-link");
 barba.init({
   views: [
     {
@@ -121,6 +155,10 @@ barba.init({
       beforeEnter() {
         animateSlides();
         logo.href = "./index.html";
+        home.href = "./index.html";
+        about.href = "./about.html";
+        work.href = "./work.html";
+        contact.href = "./contact.html";
       },
       beforeLeave() {
         slideScene.destroy();
@@ -130,7 +168,11 @@ barba.init({
     {
       namespace: "fashion",
       beforeEnter() {
-        logo.href = "../index.html";
+        logo.href = "./index.html";
+        home.href = "./index.html";
+        about.href = "./about.html";
+        work.href = "./work.html";
+        contact.href = "./contact.html";
         detailAnimation();
       },
       beforeLeave() {

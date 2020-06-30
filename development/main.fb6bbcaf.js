@@ -189,47 +189,10 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"js/nav.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var navSlide = function navSlide() {
-  var burger = document.querySelector(".burger");
-  var nav = document.querySelector(".nav-links");
-  var links = document.querySelectorAll(".nav-links li");
-  var corp = document.querySelector("body"); //! Toggle Nav
-
-  burger.addEventListener("click", function () {
-    nav.classList.toggle("nav-active"); //! Animate Links
-
-    links.forEach(function (link, index) {
-      if (link.style.animation) {
-        link.style.animation = "";
-      } else {
-        link.style.animation = "navLinkFade 0.5s ease forwards ".concat(index / 2 + 0.3, "s");
-      }
-    }); //! Burger Animation
-
-    burger.classList.toggle("toggle"); //! Body overflow and disappear
-
-    corp.classList.toggle("over");
-  });
-};
-
-var _default = navSlide;
-exports.default = _default;
-},{}],"js/main.js":[function(require,module,exports) {
+},{"_css_loader":"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"js/main.js":[function(require,module,exports) {
 "use strict";
 
 require("../sass/main.scss");
-
-var _nav = _interopRequireDefault(require("./nav"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var controller;
 var slideScene;
@@ -352,16 +315,48 @@ function activeCursor(e) {
 
 
 window.addEventListener("mousemove", cursor);
-window.addEventListener("mouseover", activeCursor);
-(0, _nav.default)(); //! Barba Page Transitions
+window.addEventListener("mouseover", activeCursor); //! ***************** Nav Slide
+
+var navSlide = function navSlide() {
+  var burger = document.querySelector(".burger");
+  var nav = document.querySelector(".nav-links");
+  var links = document.querySelectorAll(".nav-links li");
+  var corp = document.querySelector("body"); //! Toggle Nav
+
+  burger.addEventListener("click", function () {
+    nav.classList.toggle("nav-active"); //! Animate Links
+
+    links.forEach(function (link, index) {
+      if (link.style.animation) {
+        link.style.animation = "";
+      } else {
+        link.style.animation = "navLinkFade 0.5s ease forwards ".concat(index / 2 + 0.3, "s");
+      }
+    }); //! Burger Animation
+
+    burger.classList.toggle("toggle"); //! Body overflow and disappear
+
+    corp.classList.toggle("over");
+  });
+};
+
+navSlide(); //! Barba Page Transitions
 
 var logo = document.querySelector("#logo");
+var home = document.querySelector(".home-link");
+var about = document.querySelector(".about-link");
+var work = document.querySelector(".work-link");
+var contact = document.querySelector(".contact-link");
 barba.init({
   views: [{
     namespace: "home",
     beforeEnter: function beforeEnter() {
       animateSlides();
       logo.href = "./index.html";
+      home.href = "./index.html";
+      about.href = "./about.html";
+      work.href = "./work.html";
+      contact.href = "./contact.html";
     },
     beforeLeave: function beforeLeave() {
       slideScene.destroy();
@@ -370,7 +365,11 @@ barba.init({
   }, {
     namespace: "fashion",
     beforeEnter: function beforeEnter() {
-      logo.href = "../index.html";
+      logo.href = "./index.html";
+      home.href = "./index.html";
+      about.href = "./about.html";
+      work.href = "./work.html";
+      contact.href = "./contact.html";
       detailAnimation();
     },
     beforeLeave: function beforeLeave() {
@@ -436,7 +435,7 @@ barba.init({
     }
   }]
 });
-},{"../sass/main.scss":"sass/main.scss","./nav":"js/nav.js"}],"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"../sass/main.scss":"sass/main.scss"}],"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -464,7 +463,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53920" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60584" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
