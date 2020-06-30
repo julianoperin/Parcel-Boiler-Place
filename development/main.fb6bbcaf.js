@@ -353,7 +353,89 @@ function activeCursor(e) {
 
 window.addEventListener("mousemove", cursor);
 window.addEventListener("mouseover", activeCursor);
-(0, _nav.default)();
+(0, _nav.default)(); //! Barba Page Transitions
+
+var logo = document.querySelector("#logo");
+barba.init({
+  views: [{
+    namespace: "home",
+    beforeEnter: function beforeEnter() {
+      animateSlides();
+      logo.href = "./index.html";
+    },
+    beforeLeave: function beforeLeave() {
+      slideScene.destroy();
+      controller.destroy();
+    }
+  }, {
+    namespace: "fashion",
+    beforeEnter: function beforeEnter() {
+      logo.href = "../index.html";
+      detailAnimation();
+    },
+    beforeLeave: function beforeLeave() {
+      controller.destroy();
+      detailScene.destroy();
+    }
+  }],
+  transitions: [{
+    // ! Leave
+    leave: function leave(_ref) {
+      var current = _ref.current,
+          next = _ref.next;
+      var done = this.async(); //An Animation
+
+      var tl = gsap.timeline({
+        defaults: {
+          ease: "power2.inOut"
+        }
+      });
+      tl.fromTo(current.container, 1, {
+        opacity: 1
+      }, {
+        opacity: 0
+      });
+      tl.fromTo(".swipe", 1, {
+        x: "-100%"
+      }, {
+        x: "0%",
+        onComplete: done
+      }, "-=0.2");
+    },
+    // ! Enter
+    enter: function enter(_ref2) {
+      var current = _ref2.current,
+          next = _ref2.next;
+      var done = this.async(); //Scroll to the top
+
+      window.scrollTo(0, 0); //An Animation
+
+      var tl = gsap.timeline({
+        defaults: {
+          ease: "power2.inOut"
+        }
+      });
+      tl.fromTo(".swipe", 1, {
+        x: "0%"
+      }, {
+        x: "100%",
+        stagger: 0.3,
+        onComplete: done
+      });
+      tl.fromTo(next.container, 1, {
+        opacity: 0
+      }, {
+        opacity: 1
+      });
+      tl.fromTo(".nav-header", 1, {
+        y: "-100%"
+      }, {
+        y: "0%",
+        ease: "power2.inOut"
+      }, "-=1.5");
+    }
+  }]
+});
 },{"../sass/main.scss":"sass/main.scss","./nav":"js/nav.js"}],"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
