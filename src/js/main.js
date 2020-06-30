@@ -111,5 +111,21 @@ function activeCursor(e) {
 window.addEventListener("mousemove", cursor);
 window.addEventListener("mouseover", activeCursor);
 
-animateSlides();
 navSlide();
+
+
+//Barba Page Transitions
+const logo = document.querySelector("#logo");
+barba.init({
+  views: [
+    {
+      namespace: "home",
+      beforeEnter() {
+        animateSlides();
+        logo.href = "./index.html";
+      },
+      beforeLeave() {
+        slideScene.destroy();
+        controller.destroy();
+      },
+    },
