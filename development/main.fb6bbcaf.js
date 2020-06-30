@@ -315,7 +315,7 @@ function activeCursor(e) {
 
 
 window.addEventListener("mousemove", cursor);
-window.addEventListener("mouseover", activeCursor); //! ***************** Nav Slide
+window.addEventListener("mouseover", activeCursor); //! ***************** Nav Slide ************** !//
 
 var navSlide = function navSlide() {
   var burger = document.querySelector(".burger");
@@ -340,7 +340,7 @@ var navSlide = function navSlide() {
   });
 };
 
-navSlide(); //! Barba Page Transitions
+navSlide(); //! ************* Barba Page Transitions ************** !//
 
 var logo = document.querySelector("#logo");
 var home = document.querySelector(".home-link");
@@ -364,6 +364,34 @@ barba.init({
     }
   }, {
     namespace: "fashion",
+    beforeEnter: function beforeEnter() {
+      logo.href = "./index.html";
+      home.href = "./index.html";
+      about.href = "./about.html";
+      work.href = "./work.html";
+      contact.href = "./contact.html";
+      detailAnimation();
+    },
+    beforeLeave: function beforeLeave() {
+      controller.destroy();
+      detailScene.destroy();
+    }
+  }, {
+    namespace: "about",
+    beforeEnter: function beforeEnter() {
+      logo.href = "./index.html";
+      home.href = "./index.html";
+      about.href = "./about.html";
+      work.href = "./work.html";
+      contact.href = "./contact.html";
+      detailAnimation();
+    },
+    beforeLeave: function beforeLeave() {
+      controller.destroy();
+      detailScene.destroy();
+    }
+  }, {
+    namespace: "contact",
     beforeEnter: function beforeEnter() {
       logo.href = "./index.html";
       home.href = "./index.html";

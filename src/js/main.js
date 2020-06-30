@@ -110,7 +110,7 @@ function activeCursor(e) {
 window.addEventListener("mousemove", cursor);
 window.addEventListener("mouseover", activeCursor);
 
-//! ***************** Nav Slide
+//! ***************** Nav Slide ************** !//
 const navSlide = () => {
   const burger = document.querySelector(".burger");
   const nav = document.querySelector(".nav-links");
@@ -142,7 +142,7 @@ const navSlide = () => {
 
 navSlide();
 
-//! Barba Page Transitions
+//! ************* Barba Page Transitions ************** !//
 const logo = document.querySelector("#logo");
 const home = document.querySelector(".home-link");
 const about = document.querySelector(".about-link");
@@ -167,6 +167,36 @@ barba.init({
     },
     {
       namespace: "fashion",
+      beforeEnter() {
+        logo.href = "./index.html";
+        home.href = "./index.html";
+        about.href = "./about.html";
+        work.href = "./work.html";
+        contact.href = "./contact.html";
+        detailAnimation();
+      },
+      beforeLeave() {
+        controller.destroy();
+        detailScene.destroy();
+      },
+    },
+    {
+      namespace: "about",
+      beforeEnter() {
+        logo.href = "./index.html";
+        home.href = "./index.html";
+        about.href = "./about.html";
+        work.href = "./work.html";
+        contact.href = "./contact.html";
+        detailAnimation();
+      },
+      beforeLeave() {
+        controller.destroy();
+        detailScene.destroy();
+      },
+    },
+    {
+      namespace: "contact",
       beforeEnter() {
         logo.href = "./index.html";
         home.href = "./index.html";

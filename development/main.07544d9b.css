@@ -222,14 +222,15 @@ nav {
   background: #567ce4;
   transform: scale(2.5);
   z-index: 1;
-  border: 1px solid black;
+  border: 2px solid black;
 }
 
 .cursor.burger-active {
   background: #567ce4;
-  transform: scale(2.5);
-  border: 1px solid black;
+  transform: scale(1.5);
+  border: 2px solid black;
   z-index: 1;
+  transform-origin: 120% 120%;
 }
 
 .cursor.explore-active {
