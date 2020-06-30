@@ -35,7 +35,7 @@ main {
   align-items: center;
   flex: 1;
   flex-basis: 25rem;
-  padding-left: 5rem;
+  padding-left: 3.5rem;
   position: relative;
 }
 .slide .hero-img {
@@ -111,7 +111,6 @@ nav {
   width: 40%;
   flex: 1;
   position: relative;
-  z-index: 5;
 }
 
 .nav-links li {
@@ -322,6 +321,11 @@ nav {
 .swipe3 {
   background: black;
   z-index: 5;
+}
+
+.name {
+  letter-spacing: 0.5rem;
+  color: #567ce4;
 }
 
 /* 
