@@ -353,7 +353,6 @@ function activeCursor(e) {
 
 window.addEventListener("mousemove", cursor);
 window.addEventListener("mouseover", activeCursor);
-animateSlides();
 (0, _nav.default)();
 },{"../sass/main.scss":"sass/main.scss","./nav":"js/nav.js"}],"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
