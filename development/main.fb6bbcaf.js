@@ -189,11 +189,173 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"js/main.js":[function(require,module,exports) {
+},{"_css_loader":"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"js/nav.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var navSlide = function navSlide() {
+  var burger = document.querySelector(".burger");
+  var nav = document.querySelector(".nav-links");
+  var links = document.querySelectorAll(".nav-links li");
+  var corp = document.querySelector("body"); //! Toggle Nav
+
+  burger.addEventListener("click", function () {
+    nav.classList.toggle("nav-active"); //! Animate Links
+
+    links.forEach(function (link, index) {
+      if (link.style.animation) {
+        link.style.animation = "";
+      } else {
+        link.style.animation = "navLinkFade 0.5s ease forwards ".concat(index / 2 + 0.3, "s");
+      }
+    }); //! Burger Animation
+
+    burger.classList.toggle("toggle"); //! Body overflow and disappear
+
+    corp.classList.toggle("over");
+  });
+};
+
+var _default = navSlide;
+exports.default = _default;
+},{}],"js/main.js":[function(require,module,exports) {
 "use strict";
 
 require("../sass/main.scss");
-},{"../sass/main.scss":"sass/main.scss"}],"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+
+var _nav = _interopRequireDefault(require("./nav"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var controller;
+var slideScene;
+
+function animateSlides() {
+  //Init Controller
+  controller = new ScrollMagic.Controller(); //Select some things
+
+  var sliders = document.querySelectorAll(".slide");
+  var nav = document.querySelector("nav"); //Loop over the slides
+
+  sliders.forEach(function (slide, index, slides) {
+    var revealImg = slide.querySelector(".reveal-img");
+    var img = slide.querySelector("img");
+    var desc = slide.querySelector(".hero-desc"); //GSAP - Create a timeline
+
+    var slideTl = gsap.timeline({
+      defaults: {
+        duration: 1,
+        ease: "power2.inOut"
+      }
+    });
+    slideTl.fromTo(revealImg, {
+      x: "0%"
+    }, {
+      x: "100%"
+    });
+    slideTl.fromTo(img, {
+      scale: 2
+    }, {
+      scale: 1
+    }, "-=1");
+    slideTl.fromTo(desc, {
+      x: "200%"
+    }, {
+      x: "0%"
+    }, "-=0.75");
+    slideTl.fromTo(nav, {
+      y: "-100%"
+    }, {
+      y: "0%"
+    }, "-=0.5"); //Create Scene to activate when scrolled
+
+    slideScene = new ScrollMagic.Scene({
+      triggerElement: slide,
+      triggerHook: 0.4,
+      reverse: false
+    }).setTween(slideTl).addIndicators({
+      colorStart: "black",
+      colorTrigger: "blue",
+      name: "slide"
+    }).addTo(controller); // New Animation
+  });
+} //! ********  Cursor Animation ******/
+
+
+var mouse = document.querySelector(".cursor");
+var mouseTxt = mouse.querySelector("span");
+var burger = document.querySelector(".burger");
+var links = document.querySelectorAll(".nav-links li"); //! Animation for the nav links
+
+links.forEach(function (link) {
+  link.addEventListener("mouseover", function () {
+    mouse.classList.add("link-grow");
+  });
+  link.addEventListener("mouseleave", function () {
+    mouse.classList.remove("link-grow");
+  });
+}); //! Function to move cursor
+
+function cursor(e) {
+  mouse.style.top = e.pageY + "px";
+  mouse.style.left = e.pageX + "px";
+}
+
+function activeCursor(e) {
+  var item = e.target; // Logo
+
+  if (item.id === "logo") {
+    mouse.classList.add("logo-active");
+  } else {
+    mouse.classList.remove("logo-active");
+  } // img
+
+
+  if (item.classList.contains("images")) {
+    mouse.classList.add("blur");
+  } else {
+    mouse.classList.remove("blur");
+  } // burger
+
+
+  if (item.classList.contains("burger") || item.classList.contains("line1") || item.classList.contains("line2") || item.classList.contains("line3")) {
+    mouse.classList.add("burger-active");
+  } else {
+    mouse.classList.remove("burger-active");
+  } // explore btn
+
+
+  if (item.classList.contains("explore")) {
+    mouse.classList.add("explore-active");
+    mouseTxt.innerText = "Explore!"; // gsap.to(".title-swipe", 1, { y: "0%" });
+    // gsap.fromTo(".fill", 0.1, { opacity: 1 }, { opacity: 0 });
+
+    gsap.fromTo(".explore", 0.1, {
+      opacity: 1
+    }, {
+      opacity: 0
+    });
+  } else {
+    mouse.classList.remove("explore-active");
+    mouseTxt.innerText = "";
+    gsap.fromTo(".explore", 0.1, {
+      opacity: 0
+    }, {
+      opacity: 1
+    }); // gsap.to(".title-swipe", 1, { y: "100%" });
+  }
+} // Event listeners
+
+
+window.addEventListener("mousemove", cursor);
+window.addEventListener("mouseover", activeCursor);
+animateSlides();
+(0, _nav.default)();
+},{"../sass/main.scss":"sass/main.scss","./nav":"js/nav.js"}],"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
