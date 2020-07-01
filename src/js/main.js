@@ -41,7 +41,6 @@ function animateSlides() {
   });
 }
 
-//! ********  Cursor Animation ******/
 const mouse = document.querySelector(".cursor");
 const mouseTxt = mouse.querySelector("span");
 const burger = document.querySelector(".burger");
@@ -63,23 +62,37 @@ function cursor(e) {
   mouse.style.left = e.pageX + "px";
 }
 
+//! ********  Cursor Animation ******/
 function activeCursor(e) {
   const item = e.target;
 
-  // Logo
+  //! Logo
   if (item.id === "logo") {
     mouse.classList.add("logo-active");
   } else {
     mouse.classList.remove("logo-active");
   }
-  // img
+  //! img
   if (item.classList.contains("images")) {
     mouse.classList.add("blur");
   } else {
     mouse.classList.remove("blur");
   }
+  //! Footer - first and second
+  if (
+    item.classList.contains("first-footer") ||
+    item.classList.contains("footer-b") ||
+    item.classList.contains("social-button") ||
+    item.classList.contains("rounded-social-buttons") ||
+    item.classList.contains("fab") ||
+    item.classList.contains("second-footer")
+  ) {
+    mouse.style.display = "none";
+  } else {
+    mouse.style.display = "block";
+  }
 
-  // burger
+  //! burger
   if (
     item.classList.contains("burger") ||
     item.classList.contains("line1") ||
@@ -90,23 +103,21 @@ function activeCursor(e) {
   } else {
     mouse.classList.remove("burger-active");
   }
-  // explore btn
+  //! explore btn
   if (item.classList.contains("explore")) {
+    cursor.style.display = "none";
+    console.log("working");
     mouse.classList.add("explore-active");
     mouseTxt.innerText = "Explore!";
-    // gsap.to(".title-swipe", 1, { y: "0%" });
-    // gsap.fromTo(".fill", 0.1, { opacity: 1 }, { opacity: 0 });
-
     gsap.fromTo(".explore", 0.1, { opacity: 1 }, { opacity: 0 });
   } else {
     mouse.classList.remove("explore-active");
     mouseTxt.innerText = "";
     gsap.fromTo(".explore", 0.1, { opacity: 0 }, { opacity: 1 });
-    // gsap.to(".title-swipe", 1, { y: "100%" });
   }
 }
 
-// Event listeners
+//! Event listeners
 window.addEventListener("mousemove", cursor);
 window.addEventListener("mouseover", activeCursor);
 

@@ -117,89 +117,74 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"js/typewriter.js":[function(require,module,exports) {
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+})({"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-var TypeWriter = /*#__PURE__*/function () {
-  function TypeWriter(txtElement, words) {
-    var wait = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 3000;
-
-    _classCallCheck(this, TypeWriter);
-
-    this.txtElement = txtElement;
-    this.words = words;
-    this.txt = '';
-    this.wordIndex = 0;
-    this.wait = parseInt(wait, 10);
-    this.type();
-    this.isDeleting = false;
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
   }
 
-  _createClass(TypeWriter, [{
-    key: "type",
-    value: function type() {
-      var _this = this;
-
-      // Current index of word
-      var current = this.wordIndex % this.words.length; // Get full text of current word
-
-      var fullTxt = this.words[current]; // Check if deleting
-
-      if (this.isDeleting) {
-        // Remove char
-        this.txt = fullTxt.substring(0, this.txt.length - 1);
-      } else {
-        // Add char
-        this.txt = fullTxt.substring(0, this.txt.length + 1);
-      } // Insert txt into element
-
-
-      this.txtElement.innerHTML = "<span class=\"txt\">".concat(this.txt, "</span>"); // Initial Type Speed
-
-      var typeSpeed = 300;
-
-      if (this.isDeleting) {
-        typeSpeed /= 2;
-      } // If word is complete
-
-
-      if (!this.isDeleting && this.txt === fullTxt) {
-        // Make pause at end
-        typeSpeed = this.wait; // Set delete to true
-
-        this.isDeleting = true;
-      } else if (this.isDeleting && this.txt === '') {
-        this.isDeleting = false; // Move to next word
-
-        this.wordIndex++; // Pause before start typing
-
-        typeSpeed = 500;
-      }
-
-      setTimeout(function () {
-        return _this.type();
-      }, typeSpeed);
-    }
-  }]);
-
-  return TypeWriter;
-}(); // Init On DOM Load
-
-
-document.addEventListener('DOMContentLoaded', init); // Init App
-
-function init() {
-  var txtElement = document.querySelector('.txt-type');
-  var words = JSON.parse(txtElement.getAttribute('data-words'));
-  var wait = txtElement.getAttribute('data-wait'); // Init TypeWriter
-
-  new TypeWriter(txtElement, words, wait);
+  return bundleURL;
 }
-},{}],"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
+
+  return '/';
+}
+
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
+}
+
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+
+function updateLink(link) {
+  var newLink = link.cloneNode();
+
+  newLink.onload = function () {
+    link.remove();
+  };
+
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+
+var cssTimeout = null;
+
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
+
+    cssTimeout = null;
+  }, 50);
+}
+
+module.exports = reloadCSS;
+},{"./bundle-url":"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -227,11 +212,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-<<<<<<< HEAD
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62054" + '/');
-=======
   var ws = new WebSocket(protocol + '://' + hostname + ':' + "61890" + '/');
->>>>>>> 5c375b694a86f8ccb75cc968805cc6dfa14af5c5
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -407,5 +388,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/typewriter.js"], null)
-//# sourceMappingURL=/typewriter.58932f2a.js.map
+},{}]},{},["../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js"], null)
+//# sourceMappingURL=/contact.js.map
