@@ -246,8 +246,7 @@ function animateSlides() {
       name: "slide"
     }).addTo(controller); // New Animation
   });
-} //! ********  Cursor Animation ******/
-
+}
 
 var mouse = document.querySelector(".cursor");
 var mouseTxt = mouse.querySelector("span");
@@ -266,37 +265,45 @@ links.forEach(function (link) {
 function cursor(e) {
   mouse.style.top = e.pageY + "px";
   mouse.style.left = e.pageX + "px";
-}
+} //! ********  Cursor Animation ******/
+
 
 function activeCursor(e) {
-  var item = e.target; // Logo
+  var item = e.target; //! Logo
 
   if (item.id === "logo") {
     mouse.classList.add("logo-active");
   } else {
     mouse.classList.remove("logo-active");
-  } // img
+  } //! img
 
 
   if (item.classList.contains("images")) {
     mouse.classList.add("blur");
   } else {
     mouse.classList.remove("blur");
-  } // burger
+  } //! Footer - first and second
+
+
+  if (item.classList.contains("first-footer") || item.classList.contains("footer-b") || item.classList.contains("social-button") || item.classList.contains("rounded-social-buttons") || item.classList.contains("fab") || item.classList.contains("second-footer")) {
+    mouse.style.display = "none";
+  } else {
+    mouse.style.display = "block";
+  } //! burger
 
 
   if (item.classList.contains("burger") || item.classList.contains("line1") || item.classList.contains("line2") || item.classList.contains("line3")) {
     mouse.classList.add("burger-active");
   } else {
     mouse.classList.remove("burger-active");
-  } // explore btn
+  } //! explore btn
 
 
   if (item.classList.contains("explore")) {
+    cursor.style.display = "none";
+    console.log("working");
     mouse.classList.add("explore-active");
-    mouseTxt.innerText = "Explore!"; // gsap.to(".title-swipe", 1, { y: "0%" });
-    // gsap.fromTo(".fill", 0.1, { opacity: 1 }, { opacity: 0 });
-
+    mouseTxt.innerText = "Explore!";
     gsap.fromTo(".explore", 0.1, {
       opacity: 1
     }, {
@@ -309,9 +316,9 @@ function activeCursor(e) {
       opacity: 0
     }, {
       opacity: 1
-    }); // gsap.to(".title-swipe", 1, { y: "100%" });
+    });
   }
-} // Event listeners
+} //! Event listeners
 
 
 window.addEventListener("mousemove", cursor);

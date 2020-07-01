@@ -9,39 +9,90 @@
     />
     <link rel="shortcut icon" type="image/png" href="img/mountain.png" />
     <link rel="stylesheet" href="./sass/main.scss" />
+    <script
+      src="https://kit.fontawesome.com/8fe90d21f4.js"
+      crossorigin="anonymous"
+    ></script>
     <title>Hudson Valley</title>
   </head>
   <body data-barba="wrapper">
-    <header>
-      <!--! NavBar -->
-      <nav>
-        <div class="logo">
-          <a href="index.html" id="logo">Logo</a>
+    <div class="contact-section">
+      <header>
+        <!--! NavBar -->
+        <nav>
+          <div class="logo">
+            <a href="index.html" id="logo">Logo</a>
+          </div>
+          <ul class="nav-links">
+            <li><a href="index.html" class="home-link">Home</a></li>
+            <li><a href="about.html" class="about-link">About</a></li>
+            <li><a href="work.html" class="work-link">Work</a></li>
+            <li><a href="contact.html" class="contact-link">Contact</a></li>
+          </ul>
+          <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+          </div>
+        </nav>
+      </header>
+      <main
+        data-barba="container"
+        data-barba-namespace="contact"
+        class="contact-section"
+      >
+        <h1>CONTACT</h1>
+        <h3>NAME</h3>
+        <br />
+        <h3>EMAIL</h3>
+        <br />
+        <h3>PHONE</h3>
+        <br />
+        <h3>MESSAGE</h3>
+        <br />
+      </main>
+
+      <!--! Footer -->
+      <footer>
+        <div class="first-footer flex">
+          <h3 class="footer-b">All rights reserved &copy;</h3>
         </div>
-        <ul class="nav-links">
-          <li><a href="index.html" class="home-link">Home</a></li>
-          <li><a href="about.html" class="about-link">About</a></li>
-          <li><a href="work.html" class="work-link">Work</a></li>
-          <li><a href="contact.html" class="contact-link">Contact</a></li>
-        </ul>
-        <div class="burger">
-          <div class="line1"></div>
-          <div class="line2"></div>
-          <div class="line3"></div>
+        <div class="second-footer flex">
+          <div class="rounded-social-buttons">
+            <a
+              class="social-button facebook"
+              href="https://www.facebook.com/"
+              target="_blank"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a
+              class="social-button twitter"
+              href="https://www.twitter.com/"
+              target="_blank"
+              ><i class="fab fa-twitter"></i
+            ></a>
+            <a
+              class="social-button linkedin"
+              href="https://www.linkedin.com/"
+              target="_blank"
+              ><i class="fab fa-linkedin"></i
+            ></a>
+            <a
+              class="social-button youtube"
+              href="https://www.youtube.com/"
+              target="_blank"
+              ><i class="fab fa-youtube"></i
+            ></a>
+            <a
+              class="social-button instagram"
+              href="https://www.instagram.com/"
+              target="_blank"
+              ><i class="fab fa-instagram"></i
+            ></a>
+          </div>
         </div>
-      </nav>
-    </header>
-    <main data-barba="container" data-barba-namespace="contact">
-      <h1>CONTACT</h1>
-      <h3>NAME</h3>
-      <br />
-      <h3>EMAIL</h3>
-      <br />
-      <h3>PHONE</h3>
-      <br />
-      <h3>MESSAGE</h3>
-      <br />
-    </main>
+      </footer>
+    </div>
 
     <!--! Cursor Animation -->
     <div class="cursor">
