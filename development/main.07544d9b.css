@@ -473,6 +473,24 @@ textarea {
   min-height: 90vh;
 }
 
+.contact-title {
+  min-height: 15vh;
+}
+
+.contact-parent {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.first-child {
+  background: lightblue;
+}
+
+.second-child {
+  background: pink;
+  min-height: 60vh;
+}
+
 /* 
 font-family: 'Forum', cursive;
 font-family: 'Give You Glory', cursive;
